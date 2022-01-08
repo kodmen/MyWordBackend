@@ -1,0 +1,37 @@
+{
+  "name": "Kart",
+  "fields": [
+    {
+      "fieldName": "onYuz",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "arkaYuz",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "onemSira",
+      "fieldType": "Integer"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "deste",
+      "otherEntityRelationshipName": "kartlar",
+      "relationshipName": "tekDeste",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20220108163208",
+  "entityTableName": "kart",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": ["MyWords"]
+}

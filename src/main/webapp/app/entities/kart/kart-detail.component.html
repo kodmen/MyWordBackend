@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="kart">
+            <h2><span jhiTranslate="myWordsApp.kart.detail.title">Kart</span> {{ kart.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="myWordsApp.kart.onYuz">On Yuz</span></dt>
+                <dd>
+                    <span>{{ kart.onYuz }}</span>
+                </dd>
+                <dt><span jhiTranslate="myWordsApp.kart.arkaYuz">Arka Yuz</span></dt>
+                <dd>
+                    <span>{{ kart.arkaYuz }}</span>
+                </dd>
+                <dt><span jhiTranslate="myWordsApp.kart.onemSira">Onem Sira</span></dt>
+                <dd>
+                    <span>{{ kart.onemSira }}</span>
+                </dd>
+                <dt><span jhiTranslate="myWordsApp.kart.tekDeste">Tek Deste</span></dt>
+                <dd>
+                    <div *ngIf="kart.tekDeste">
+                        <a [routerLink]="['/deste', kart.tekDeste?.id, 'view']">{{ kart.tekDeste?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/kart', kart.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

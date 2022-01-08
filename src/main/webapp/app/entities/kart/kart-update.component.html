@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-kart-heading" jhiTranslate="myWordsApp.kart.home.createOrEditLabel">Create or edit a Kart</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="myWordsApp.kart.onYuz" for="field_onYuz">On Yuz</label>
+                    <input type="text" class="form-control" name="onYuz" id="field_onYuz"
+                           formControlName="onYuz"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="myWordsApp.kart.arkaYuz" for="field_arkaYuz">Arka Yuz</label>
+                    <input type="text" class="form-control" name="arkaYuz" id="field_arkaYuz"
+                           formControlName="arkaYuz"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="myWordsApp.kart.onemSira" for="field_onemSira">Onem Sira</label>
+                    <input type="number" class="form-control" name="onemSira" id="field_onemSira"
+                           formControlName="onemSira"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="myWordsApp.kart.tekDeste" for="field_tekDeste">Tek Deste</label>
+                    <select class="form-control" id="field_tekDeste" name="tekDeste" formControlName="tekDeste">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="desteOption.id === editForm.get('tekDeste')!.value?.id ? editForm.get('tekDeste')!.value : desteOption" *ngFor="let desteOption of destes; trackBy: trackById">{{ desteOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

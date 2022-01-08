@@ -1,0 +1,31 @@
+
+application {
+  config {
+    baseName MyWords,
+    applicationType monolith,
+    packageName com.bedir.mywords,
+    authenticationType jwt,
+    prodDatabaseType postgresql,
+    clientFramework angular
+  }
+  entities *
+}
+
+entity Deste {
+	renk String
+}
+
+entity Kart {
+	onYuz String
+    arkaYuz String
+    onemSira Integer
+}
+
+relationship OneToOne{
+	Deste{internalUser} to User
+}
+
+relationship OneToMany {
+  Deste{kartlar} to Kart{tekDeste}
+}
+    

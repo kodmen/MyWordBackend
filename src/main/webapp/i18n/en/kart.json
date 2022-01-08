@@ -1,0 +1,25 @@
+{
+  "myWordsApp": {
+    "kart": {
+      "home": {
+        "title": "Karts",
+        "createLabel": "Create a new Kart",
+        "createOrEditLabel": "Create or edit a Kart",
+        "notFound": "No Karts found"
+      },
+      "created": "A new Kart is created with identifier {{ param }}",
+      "updated": "A Kart is updated with identifier {{ param }}",
+      "deleted": "A Kart is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Kart {{ id }}?"
+      },
+      "detail": {
+        "title": "Kart"
+      },
+      "onYuz": "On Yuz",
+      "arkaYuz": "Arka Yuz",
+      "onemSira": "Onem Sira",
+      "tekDeste": "Tek Deste"
+    }
+  }
+}

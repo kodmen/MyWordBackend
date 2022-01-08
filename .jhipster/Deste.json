@@ -1,0 +1,36 @@
+{
+  "name": "Deste",
+  "fields": [
+    {
+      "fieldName": "renk",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "deste",
+      "relationshipName": "internalUser",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "kart",
+      "otherEntityRelationshipName": "tekDeste",
+      "relationshipName": "kartlar"
+    }
+  ],
+  "changelogDate": "20220108163108",
+  "entityTableName": "deste",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": ["MyWords"]
+}

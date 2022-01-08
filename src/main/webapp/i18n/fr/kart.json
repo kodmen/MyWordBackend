@@ -1,0 +1,25 @@
+{
+  "myWordsApp": {
+    "kart": {
+      "home": {
+        "title": "Karts",
+        "createLabel": "Créer un nouveau Kart",
+        "createOrEditLabel": "Créer ou éditer un Kart",
+        "notFound": "Aucun Kart trouvé"
+      },
+      "created": "Un nouveau Kart a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Kart avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Kart avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Kart {{ id }} ?"
+      },
+      "detail": {
+        "title": "Kart"
+      },
+      "onYuz": "On Yuz",
+      "arkaYuz": "Arka Yuz",
+      "onemSira": "Onem Sira",
+      "tekDeste": "Tek Deste"
+    }
+  }
+}

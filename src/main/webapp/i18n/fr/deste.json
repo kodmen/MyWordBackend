@@ -1,0 +1,24 @@
+{
+  "myWordsApp": {
+    "deste": {
+      "home": {
+        "title": "Destes",
+        "createLabel": "Créer un nouveau Deste",
+        "createOrEditLabel": "Créer ou éditer un Deste",
+        "notFound": "Aucun Deste trouvé"
+      },
+      "created": "Un nouveau Deste a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Deste avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Deste avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Deste {{ id }} ?"
+      },
+      "detail": {
+        "title": "Deste"
+      },
+      "renk": "Renk",
+      "internalUser": "Internal User",
+      "kartlar": "Kartlar"
+    }
+  }
+}
