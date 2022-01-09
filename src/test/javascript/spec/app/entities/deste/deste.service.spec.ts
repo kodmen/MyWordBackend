@@ -20,7 +20,7 @@ describe('Service Tests', () => {
       service = injector.get(DesteService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Deste(0, 'AAAAAAA');
+      elemDefault = new Deste(0, 'AAAAAAA', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -55,6 +55,7 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             renk: 'BBBBBB',
+            name: 'BBBBBB',
           },
           elemDefault
         );
@@ -72,6 +73,7 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             renk: 'BBBBBB',
+            name: 'BBBBBB',
           },
           elemDefault
         );

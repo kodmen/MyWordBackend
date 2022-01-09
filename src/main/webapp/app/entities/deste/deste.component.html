@@ -24,6 +24,7 @@
                 <tr>
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
                     <th scope="col" ><span jhiTranslate="myWordsApp.deste.renk">Renk</span></th>
+                    <th scope="col" ><span jhiTranslate="myWordsApp.deste.name">Name</span></th>
                     <th scope="col" ><span jhiTranslate="myWordsApp.deste.internalUser">Internal User</span></th>
                     <th scope="col"></th>
                 </tr>
@@ -32,6 +33,7 @@
                 <tr *ngFor="let deste of destes ;trackBy: trackId">
                     <td><a [routerLink]="['/deste', deste.id, 'view']">{{ deste.id }}</a></td>
                     <td>{{ deste.renk }}</td>
+                    <td>{{ deste.name }}</td>
                     <td>
                         {{ deste.internalUser?.id }}
                     </td>

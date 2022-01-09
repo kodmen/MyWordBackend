@@ -27,6 +27,9 @@ public class Deste implements Serializable {
     @Column(name = "renk")
     private String renk;
 
+    @Column(name = "name")
+    private String name;
+
     @OneToOne
     @JoinColumn(unique = true)
     private User internalUser;
@@ -55,6 +58,19 @@ public class Deste implements Serializable {
 
     public void setRenk(String renk) {
         this.renk = renk;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Deste name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public User getInternalUser() {
@@ -118,6 +134,7 @@ public class Deste implements Serializable {
         return "Deste{" +
             "id=" + getId() +
             ", renk='" + getRenk() + "'" +
+            ", name='" + getName() + "'" +
             "}";
     }
 }

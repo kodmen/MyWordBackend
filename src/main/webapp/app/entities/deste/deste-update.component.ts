@@ -21,6 +21,7 @@ export class DesteUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     renk: [],
+    name: [],
     internalUser: [],
   });
 
@@ -43,6 +44,7 @@ export class DesteUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: deste.id,
       renk: deste.renk,
+      name: deste.name,
       internalUser: deste.internalUser,
     });
   }
@@ -66,6 +68,7 @@ export class DesteUpdateComponent implements OnInit {
       ...new Deste(),
       id: this.editForm.get(['id'])!.value,
       renk: this.editForm.get(['renk'])!.value,
+      name: this.editForm.get(['name'])!.value,
       internalUser: this.editForm.get(['internalUser'])!.value,
     };
   }

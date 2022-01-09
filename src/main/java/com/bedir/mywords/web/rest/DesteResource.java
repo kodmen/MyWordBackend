@@ -2,6 +2,7 @@ package com.bedir.mywords.web.rest;
 
 import com.bedir.mywords.domain.Deste;
 import com.bedir.mywords.repository.DesteRepository;
+import com.bedir.mywords.service.DesteService;
 import com.bedir.mywords.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -35,8 +36,11 @@ public class DesteResource {
 
     private final DesteRepository desteRepository;
 
-    public DesteResource(DesteRepository desteRepository) {
+    private final DesteService desteService;
+
+    public DesteResource(DesteRepository desteRepository, DesteService desteService) {
         this.desteRepository = desteRepository;
+        this.desteService = desteService;
     }
 
     /**
@@ -88,6 +92,16 @@ public class DesteResource {
     public List<Deste> getAllDestes() {
         log.debug("REST request to get all Destes");
         return desteRepository.findAll();
+    }
+
+    /**
+     *
+     * @return
+     */
+    @GetMapping("/desteuser")
+    public List<Deste> getAllDestesForUser() {
+        log.debug("REST request to get all Destes");
+        return desteService.getUserIdAllDeste();
     }
 
     /**

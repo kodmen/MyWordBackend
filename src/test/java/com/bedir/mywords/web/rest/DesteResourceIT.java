@@ -32,6 +32,9 @@ public class DesteResourceIT {
     private static final String DEFAULT_RENK = "AAAAAAAAAA";
     private static final String UPDATED_RENK = "BBBBBBBBBB";
 
+    private static final String DEFAULT_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_NAME = "BBBBBBBBBB";
+
     @Autowired
     private DesteRepository desteRepository;
 
@@ -51,7 +54,8 @@ public class DesteResourceIT {
      */
     public static Deste createEntity(EntityManager em) {
         Deste deste = new Deste()
-            .renk(DEFAULT_RENK);
+            .renk(DEFAULT_RENK)
+            .name(DEFAULT_NAME);
         return deste;
     }
     /**
@@ -62,7 +66,8 @@ public class DesteResourceIT {
      */
     public static Deste createUpdatedEntity(EntityManager em) {
         Deste deste = new Deste()
-            .renk(UPDATED_RENK);
+            .renk(UPDATED_RENK)
+            .name(UPDATED_NAME);
         return deste;
     }
 
@@ -86,6 +91,7 @@ public class DesteResourceIT {
         assertThat(desteList).hasSize(databaseSizeBeforeCreate + 1);
         Deste testDeste = desteList.get(desteList.size() - 1);
         assertThat(testDeste.getRenk()).isEqualTo(DEFAULT_RENK);
+        assertThat(testDeste.getName()).isEqualTo(DEFAULT_NAME);
     }
 
     @Test
@@ -119,7 +125,8 @@ public class DesteResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(deste.getId().intValue())))
-            .andExpect(jsonPath("$.[*].renk").value(hasItem(DEFAULT_RENK)));
+            .andExpect(jsonPath("$.[*].renk").value(hasItem(DEFAULT_RENK)))
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)));
     }
     
     @Test
@@ -133,7 +140,8 @@ public class DesteResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(deste.getId().intValue()))
-            .andExpect(jsonPath("$.renk").value(DEFAULT_RENK));
+            .andExpect(jsonPath("$.renk").value(DEFAULT_RENK))
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME));
     }
     @Test
     @Transactional
@@ -156,7 +164,8 @@ public class DesteResourceIT {
         // Disconnect from session so that the updates on updatedDeste are not directly saved in db
         em.detach(updatedDeste);
         updatedDeste
-            .renk(UPDATED_RENK);
+            .renk(UPDATED_RENK)
+            .name(UPDATED_NAME);
 
         restDesteMockMvc.perform(put("/api/destes")
             .contentType(MediaType.APPLICATION_JSON)
@@ -168,6 +177,7 @@ public class DesteResourceIT {
         assertThat(desteList).hasSize(databaseSizeBeforeUpdate);
         Deste testDeste = desteList.get(desteList.size() - 1);
         assertThat(testDeste.getRenk()).isEqualTo(UPDATED_RENK);
+        assertThat(testDeste.getName()).isEqualTo(UPDATED_NAME);
     }
 
     @Test

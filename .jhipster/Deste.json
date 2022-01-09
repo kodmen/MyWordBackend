@@ -4,6 +4,10 @@
     {
       "fieldName": "renk",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
     }
   ],
   "relationships": [
@@ -32,5 +36,7 @@
   "readOnly": false,
   "embedded": false,
   "clientRootFolder": "",
-  "applications": ["MyWords"]
+  "applications": ["MyWords"],
+  "searchEngine": false,
+  "databaseType": "sql"
 }
