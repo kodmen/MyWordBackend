@@ -4,6 +4,7 @@ import com.bedir.mywords.domain.Deste;
 import com.bedir.mywords.domain.Kart;
 import com.bedir.mywords.repository.KartRepository;
 import com.bedir.mywords.service.KartService;
+import com.bedir.mywords.service.dto.KartDTO;
 import com.bedir.mywords.service.utilities.DataResult;
 import com.bedir.mywords.web.rest.errors.BadRequestAlertException;
 
@@ -64,6 +65,13 @@ public class KartResource {
             .body(result);
     }
 
+    @PostMapping("/karts-deste")
+    public DataResult<Kart> createKartForDeste(@RequestBody KartDTO kart) throws URISyntaxException {
+        log.debug("REST request to save Kart : {}", kart);
+
+        return kartService.createKart(kart);
+    }
+
     /**
      * {@code PUT  /karts} : Updates an existing kart.
      *
@@ -83,6 +91,21 @@ public class KartResource {
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, kart.getId().toString()))
             .body(result);
+    }
+
+    /**
+     * {@code PUT  /karts} : Updates an existing kart.
+     *
+     * @param kart the kart to update.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated kart,
+     * or with status {@code 400 (Bad Request)} if the kart is not valid,
+     * or with status {@code 500 (Internal Server Error)} if the kart couldn't be updated.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    @PutMapping("/karts-deste")
+    public DataResult<Kart> updateKartForDeste(@RequestBody KartDTO kart) throws URISyntaxException {
+        log.debug("REST request to update Kart : {}", kart);
+        return kartService.updateKart(kart);
     }
 
     /**
