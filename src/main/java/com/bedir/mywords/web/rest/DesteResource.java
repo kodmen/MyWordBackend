@@ -3,6 +3,8 @@ package com.bedir.mywords.web.rest;
 import com.bedir.mywords.domain.Deste;
 import com.bedir.mywords.repository.DesteRepository;
 import com.bedir.mywords.service.DesteService;
+import com.bedir.mywords.service.dto.DesteDTO;
+import com.bedir.mywords.service.utilities.DataResult;
 import com.bedir.mywords.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -62,6 +64,16 @@ public class DesteResource {
             .body(result);
     }
 
+    @PostMapping("/destes-user")
+    public ResponseEntity<Deste> createDesteForUser(@RequestBody DesteDTO deste) throws URISyntaxException {
+        log.debug("REST request to save Deste : {}", deste);
+
+        Deste result = desteService.createDeste(deste);
+        return ResponseEntity.created(new URI("/api/destes/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
+            .body(result);
+    }
+
     /**
      * {@code PUT  /destes} : Updates an existing deste.
      *
@@ -98,8 +110,8 @@ public class DesteResource {
      *
      * @return
      */
-    @GetMapping("/desteuser")
-    public List<Deste> getAllDestesForUser() {
+    @GetMapping("/deste-user")
+    public DataResult<List<Deste>> getAllDestesForUser() {
         log.debug("REST request to get all Destes");
         return desteService.getUserIdAllDeste();
     }

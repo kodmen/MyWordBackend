@@ -31,7 +31,7 @@ public class Deste implements Serializable {
     private String name;
 
     @OneToOne
-    @JoinColumn(unique = true)
+    //@JoinColumn()
     private User internalUser;
 
     @OneToMany(mappedBy = "tekDeste")

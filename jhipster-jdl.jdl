@@ -13,6 +13,7 @@ application {
 
 entity Deste {
 	renk String
+	name String
 }
 
 entity Kart {
@@ -28,4 +29,3 @@ relationship OneToOne{
 relationship OneToMany {
   Deste{kartlar} to Kart{tekDeste}
 }
-    
