@@ -12,12 +12,10 @@
   ],
   "relationships": [
     {
-      "relationshipType": "one-to-one",
+      "relationshipType": "many-to-one",
       "otherEntityName": "user",
       "otherEntityRelationshipName": "deste",
-      "relationshipName": "internalUser",
-      "otherEntityField": "id",
-      "ownerSide": true
+      "relationshipName": "internalUser"
     },
     {
       "relationshipType": "one-to-many",

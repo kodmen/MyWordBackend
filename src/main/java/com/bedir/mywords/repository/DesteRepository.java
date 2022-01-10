@@ -13,5 +13,9 @@ import java.util.List;
 @SuppressWarnings("unused")
 @Repository
 public interface DesteRepository extends JpaRepository<Deste, Long> {
+
+    @Query("select deste from Deste deste where deste.internalUser.login = ?#{principal.username}")
+    List<Deste> findByInternalUserIsCurrentUser();
+
     List<Deste> findAllByInternalUser_Id(long id);
 }

@@ -1,5 +1,6 @@
 package com.bedir.mywords.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -30,8 +31,8 @@ public class Deste implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @OneToOne
-    //@JoinColumn()
+    @ManyToOne
+    @JsonIgnoreProperties(value = "destes", allowSetters = true)
     private User internalUser;
 
     @OneToMany(mappedBy = "tekDeste")

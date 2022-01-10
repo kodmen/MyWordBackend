@@ -1,7 +1,10 @@
 package com.bedir.mywords.web.rest;
 
+import com.bedir.mywords.domain.Deste;
 import com.bedir.mywords.domain.Kart;
 import com.bedir.mywords.repository.KartRepository;
+import com.bedir.mywords.service.KartService;
+import com.bedir.mywords.service.utilities.DataResult;
 import com.bedir.mywords.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -35,8 +38,11 @@ public class KartResource {
 
     private final KartRepository kartRepository;
 
-    public KartResource(KartRepository kartRepository) {
+    private final KartService kartService;
+
+    public KartResource(KartRepository kartRepository, KartService kartService) {
         this.kartRepository = kartRepository;
+        this.kartService = kartService;
     }
 
     /**
@@ -101,6 +107,20 @@ public class KartResource {
         log.debug("REST request to get Kart : {}", id);
         Optional<Kart> kart = kartRepository.findById(id);
         return ResponseUtil.wrapOrNotFound(kart);
+    }
+
+    /**
+     * {@code GET  /karts/:id} : get the "id" kart.
+     *
+     * @param id the id of the kart to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the kart, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/karts-desteId/{desteId}")
+    public DataResult<List<Kart>> getKartDesteId(@PathVariable Long desteId) {
+        log.debug("REST request to get Kart : {}", desteId);
+        return kartService.getAllKartforDestId(desteId);
+//        Optional<Kart> kart = kartRepository.findById(des);
+//        return ResponseUtil.wrapOrNotFound(kart);
     }
 
     /**
