@@ -82,4 +82,11 @@ public class DesteService {
         desteRepository.delete(d);
         return new SuccessResult("silme başarılı");
     }
+
+    public SuccessDataResult<Deste> getOneDeste(long id){
+        Deste d = desteRepository.getOne(id);
+        List<Kart> kartlar = kartService.getAllKartForDeste(d.getId());
+        d.setKartlars(new HashSet<Kart>(kartlar));
+        return new SuccessDataResult<>(d,"tek deste getirildi");
+    }
 }

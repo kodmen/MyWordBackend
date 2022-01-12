@@ -140,10 +140,11 @@ public class DesteResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the deste, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/destes/{id}")
-    public ResponseEntity<Deste> getDeste(@PathVariable Long id) {
+    public DataResult<Deste> getDeste(@PathVariable Long id) {
         log.debug("REST request to get Deste : {}", id);
-        Optional<Deste> deste = desteRepository.findById(id);
-        return ResponseUtil.wrapOrNotFound(deste);
+        return desteService.getOneDeste(id);
+//        Optional<Deste> deste = desteRepository.findById(id);
+//        return ResponseUtil.wrapOrNotFound(deste);
     }
 
     /**
