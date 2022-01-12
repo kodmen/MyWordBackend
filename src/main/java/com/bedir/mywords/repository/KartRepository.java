@@ -14,4 +14,5 @@ import java.util.List;
 @Repository
 public interface KartRepository extends JpaRepository<Kart, Long> {
     List<Kart> findAllByTekDeste_Id(long id);
+    boolean deleteByTekDesteId(long id);
 }

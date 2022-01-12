@@ -6,6 +6,7 @@ import com.bedir.mywords.domain.User;
 import com.bedir.mywords.repository.DesteRepository;
 import com.bedir.mywords.service.dto.DesteDTO;
 import com.bedir.mywords.service.utilities.SuccessDataResult;
+import com.bedir.mywords.service.utilities.SuccessResult;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -65,5 +66,20 @@ public class DesteService {
         desteRepository.save(d);
         return d;
 
+    }
+
+    public SuccessDataResult<Deste> updateDeste(DesteDTO dto){
+        Deste entitiy = desteRepository.getOne(dto.getId());
+        entitiy.name(dto.getName());
+        entitiy.renk(dto.getRenk());
+        return new SuccessDataResult<Deste>(desteRepository.save(entitiy),"deste guncellendi");
+
+    }
+
+    public SuccessResult deleteDeste(long id){
+        Deste d = desteRepository.getOne(id);
+        kartService.deleteAllKart(d.getId());
+        desteRepository.delete(d);
+        return new SuccessResult("silme başarılı");
     }
 }

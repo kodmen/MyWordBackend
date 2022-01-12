@@ -5,6 +5,7 @@ import com.bedir.mywords.repository.DesteRepository;
 import com.bedir.mywords.service.DesteService;
 import com.bedir.mywords.service.dto.DesteDTO;
 import com.bedir.mywords.service.utilities.DataResult;
+import com.bedir.mywords.service.utilities.SuccessResult;
 import com.bedir.mywords.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -96,6 +97,22 @@ public class DesteResource {
     }
 
     /**
+     * {@code PUT  /destes} : Updates an existing deste.
+     *
+     * @param deste the deste to update.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated deste,
+     * or with status {@code 400 (Bad Request)} if the deste is not valid,
+     * or with status {@code 500 (Internal Server Error)} if the deste couldn't be updated.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    @PutMapping("/destes-user")
+    public DataResult<Deste> updateDesteForUser(@RequestBody DesteDTO deste) throws URISyntaxException {
+        log.debug("REST request to update Deste : {}", deste);
+        return desteService.updateDeste(deste);
+
+    }
+
+    /**
      * {@code GET  /destes} : get all the destes.
      *
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of destes in body.
@@ -136,9 +153,11 @@ public class DesteResource {
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/destes/{id}")
-    public ResponseEntity<Void> deleteDeste(@PathVariable Long id) {
+    public SuccessResult deleteDeste(@PathVariable Long id) {
         log.debug("REST request to delete Deste : {}", id);
-        desteRepository.deleteById(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+        return desteService.deleteDeste(id);
+
+//        desteRepository.deleteById(id);
+//        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }

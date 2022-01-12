@@ -49,5 +49,14 @@ public class KartService {
         return new SuccessDataResult<Kart>(kartRepository.save(k),"kart guncellendi");
     }
 
+    public boolean deleteAllKart(long desteId){
+        //burda deste id var mı kontrolu yapabiliriz
+        List<Kart> deletKart = kartRepository.findAllByTekDeste_Id(desteId);
+        deletKart.forEach(kart -> {
+            kartRepository.delete(kart);
+        });
+       return true;
+    }
+
 
 }
