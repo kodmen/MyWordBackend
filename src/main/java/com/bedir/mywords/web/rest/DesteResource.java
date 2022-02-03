@@ -5,6 +5,7 @@ import com.bedir.mywords.repository.DesteRepository;
 import com.bedir.mywords.service.DesteService;
 import com.bedir.mywords.service.dto.DesteDTO;
 import com.bedir.mywords.service.utilities.DataResult;
+import com.bedir.mywords.service.utilities.Result;
 import com.bedir.mywords.service.utilities.SuccessResult;
 import com.bedir.mywords.web.rest.errors.BadRequestAlertException;
 
@@ -154,7 +155,7 @@ public class DesteResource {
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/destes/{id}")
-    public SuccessResult deleteDeste(@PathVariable Long id) {
+    public Result deleteDeste(@PathVariable Long id) {
         log.debug("REST request to delete Deste : {}", id);
         return desteService.deleteDeste(id);
 

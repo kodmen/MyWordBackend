@@ -33,9 +33,9 @@ spring:
       enabled: false
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/MyWords
-    username: MyWords
-    password:
+    url: jdbc:postgresql://db-postgresql-fra1-55519-do-user-10636932-0.b.db.ondigitalocean.com:25060/defaultdb
+    username: doadmin
+    password: AArSpvNo6wWgtarl
     hikari:
       poolName: Hikari
       auto-commit: false

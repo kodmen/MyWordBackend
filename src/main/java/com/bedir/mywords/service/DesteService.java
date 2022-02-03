@@ -5,8 +5,7 @@ import com.bedir.mywords.domain.Kart;
 import com.bedir.mywords.domain.User;
 import com.bedir.mywords.repository.DesteRepository;
 import com.bedir.mywords.service.dto.DesteDTO;
-import com.bedir.mywords.service.utilities.SuccessDataResult;
-import com.bedir.mywords.service.utilities.SuccessResult;
+import com.bedir.mywords.service.utilities.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +13,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+
+import static com.bedir.mywords.service.KartService.check;
 
 @Service
 @Transactional
@@ -68,25 +69,42 @@ public class DesteService {
 
     }
 
-    public SuccessDataResult<Deste> updateDeste(DesteDTO dto){
-        Deste entitiy = desteRepository.getOne(dto.getId());
-        entitiy.name(dto.getName());
-        entitiy.renk(dto.getRenk());
-        return new SuccessDataResult<Deste>(desteRepository.save(entitiy),"deste guncellendi");
+    public DataResult<Deste> updateDeste(DesteDTO dto){
+        if(userAndExistCheck(dto.getId())){
+            Deste entitiy = desteRepository.getOne(dto.getId());
+            entitiy.name(dto.getName());
+            entitiy.renk(dto.getRenk());
+            return new SuccessDataResult<Deste>(desteRepository.save(entitiy),"deste guncellendi");
+        }else{
+            return new ErrorDataResult<Deste>(null,"deste guncellenmedi");
+        }
+    }
+
+    public Result deleteDeste(long id){
+        if(userAndExistCheck(id)){
+            Deste d = desteRepository.getOne(id);
+            kartService.deleteAllKart(d.getId());
+            desteRepository.delete(d);
+            return new SuccessResult("silme başarılı");
+        }else{
+            return new ErrorResult("silme başarısız");
+        }
 
     }
 
-    public SuccessResult deleteDeste(long id){
-        Deste d = desteRepository.getOne(id);
-        kartService.deleteAllKart(d.getId());
-        desteRepository.delete(d);
-        return new SuccessResult("silme başarılı");
+    public DataResult<Deste> getOneDeste(long id){
+        if(userAndExistCheck(id)){
+            Deste d = desteRepository.getOne(id);
+            List<Kart> kartlar = kartService.getAllKartForDeste(d.getId());
+            d.setKartlars(new HashSet<Kart>(kartlar));
+            return new SuccessDataResult<>(d,"tek deste getirildi");
+        }else{
+            return new ErrorDataResult<>(null,"başarısız");
+        }
+
     }
 
-    public SuccessDataResult<Deste> getOneDeste(long id){
-        Deste d = desteRepository.getOne(id);
-        List<Kart> kartlar = kartService.getAllKartForDeste(d.getId());
-        d.setKartlars(new HashSet<Kart>(kartlar));
-        return new SuccessDataResult<>(d,"tek deste getirildi");
+    public boolean userAndExistCheck(long id){
+        return check(id, desteRepository, userService);
     }
 }
